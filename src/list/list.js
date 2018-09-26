@@ -38,7 +38,6 @@ class ListeCore extends Component {
   formatEvents(events) {
     return events.map(event => ({
       id: event.recordid,
-      datasetid: event.id,
       address: event.fields.address,
       city: event.fields.city,
       dateEnd: event.fields.date_end,
