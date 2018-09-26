@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { Component } from 'react'
 
 import initialState from './initialState'
-import Article from './components/item'
+import Item from './components/item'
 
 class ListeCore extends Component {
   constructor() {
@@ -38,6 +38,7 @@ class ListeCore extends Component {
   formatEvents(events) {
     return events.map(event => ({
       id: event.recordid,
+      datasetid: event.id,
       address: event.fields.address,
       city: event.fields.city,
       dateEnd: event.fields.date_end,
@@ -54,7 +55,7 @@ class ListeCore extends Component {
     return (
       <div>
         {this.getData()}
-        <Article data={data} />
+        <Item data={data} />
       </div>
     )
   }

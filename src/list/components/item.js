@@ -5,7 +5,7 @@ const Item = ({ data }) => (
     {data.map(item => (
       <div key={item.id}>
         <div className="title">
-          {`${item.title} :`}
+          {`${item.title} ${item.datasetid} :`}
         </div>
         <img src={item.image} alt="img-event" className="imgresult" />
       </div>
