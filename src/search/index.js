@@ -2,25 +2,16 @@ import axios from 'axios'
 import React, { Component } from 'react'
 
 import initialState from './initial-state'
-import List from './list/index.js'
+import Results from './components/results'
+import SearchBar from './components/search-bar'
+import '../index.scss'
 
 class Search extends Component {
   constructor() {
     super()
 
     this.state = initialState
-  }
-
-  componentDidMount() {
-    const { data } = this.state
-
-    console.log('started data --->', data)
-  }
-
-  componentWillUpdate() {
-    const { data } = this.state
-
-    console.log('updated data --->', data)
+    this.getValue = this.searchResult.bind(this)
   }
 
   /**
@@ -35,11 +26,17 @@ class Search extends Component {
       .then((response) => {
         this.state.data = this.formatEvents(response.data.records)
 
-        this.forceUpdate()
+        this.setState({
+          data: this.formatEvents(response.data.records)
+        })
       })
       .catch((error) => {
         console.log(error)
       })
+  }
+
+  searchResult(value) {
+    this.getData(value)
   }
 
   /**
@@ -60,25 +57,13 @@ class Search extends Component {
     }))
   }
 
-  handleChange(event) {
-    this.setState({
-      filter: event.target.value
-    })
-  }
-
   render() {
     const { data } = this.state
-    const { filter } = this.state
+
     return (
       <div>
-        <input
-          type="text"
-          id="filter"
-          value={filter}
-          onChange={this.handleChange.bind(this)}
-        />
-        <button type="button" onClick={() => this.getData(filter)}>Hello</button>
-        <List className="index" list={data} />
+        <SearchBar searchResult={this.getValue} />
+        <Results data={data} />
       </div>
     )
   }
