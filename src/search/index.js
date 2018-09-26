@@ -4,7 +4,6 @@ import React, { Component } from 'react'
 import initialState from './initial-state'
 import Results from './components/results'
 import SearchBar from './components/search-bar'
-import '../index.scss'
 
 class Search extends Component {
   constructor() {

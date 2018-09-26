@@ -7,7 +7,8 @@ const devMode = process.env.NODE_ENV !== 'production'
 module.exports = {
   output: {
     filename: '[hash].js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
   optimization: {
     runtimeChunk: 'single'
@@ -31,6 +32,9 @@ module.exports = {
         ]
       }
     ]
+  },
+  devServer: {
+     historyApiFallback: true
   },
   plugins: [
     new HtmlWebPackPlugin({
