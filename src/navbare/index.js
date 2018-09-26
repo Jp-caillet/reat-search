@@ -2,9 +2,7 @@ import React from 'react'
 import {
   Navbar,
   Nav,
-  NavItem,
-  NavDropdown,
-  MenuItem
+  NavItem
 } from 'react-bootstrap'
 
 const Navbare = () => (
@@ -16,27 +14,12 @@ const Navbare = () => (
       <Navbar.Toggle />
     </Navbar.Header>
     <Navbar.Collapse>
-      <Nav>
-        <NavItem eventKey={1} href="#">
-          Link
-        </NavItem>
-        <NavItem eventKey={2} href="#">
-          Link
-        </NavItem>
-        <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
-          <MenuItem eventKey={3.1}>Action</MenuItem>
-          <MenuItem eventKey={3.2}>Another action</MenuItem>
-          <MenuItem eventKey={3.3}>Something else here</MenuItem>
-          <MenuItem divider />
-          <MenuItem eventKey={3.3}>Separated link</MenuItem>
-        </NavDropdown>
-      </Nav>
       <Nav pullRight>
-        <NavItem eventKey={1} href="#">
-          Link Right
+        <NavItem eventKey={1} href="/">
+          Liste
         </NavItem>
-        <NavItem eventKey={2} href="#">
-          Link Right
+        <NavItem eventKey={2} href="/search">
+          Search
         </NavItem>
       </Nav>
     </Navbar.Collapse>

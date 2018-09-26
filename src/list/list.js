@@ -1,29 +1,63 @@
-import React from 'react'
+import axios from 'axios'
+import React, { Component } from 'react'
 
-import List from './components/item'
+import initialState from './initialState'
+import Article from './components/item'
 
-const list = [
-  {
-    id: 1,
-    name: 'Cyril',
-    age: 31
-  },
-  {
-    id: 2,
-    name: 'Jp',
-    age: 25
-  },
-  {
-    id: 3,
-    name: 'React',
-    age: 5
+class ListeCore extends Component {
+  constructor() {
+    super()
+
+    this.state = initialState
   }
-]
 
-const ListCore = () => (
-  <div>
-    <List className="index" list={list} />
-  </div>
-)
+  /**
+   * Get data
+   * @param {string} query
+   * @return {Object} dataFormatted
+   */
+  getData() {
+    const apiUrl = 'https://opendata.paris.fr/api/records/1.0/search/?dataset=evenements-a-paris&facet=placename&facet=department&facet=region&facet=city&facet=date_start&facet=date_end&facet=pricing_info'
 
-export default ListCore
+    axios.get(apiUrl)
+      .then((response) => {
+        this.setState({
+          data: this.formatEvents(response.data.records)
+        })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  /**
+   * Format events
+   * @param {Array} events
+   * @return {Array} eventsFormatted
+   */
+  formatEvents(events) {
+    return events.map(event => ({
+      id: event.recordid,
+      address: event.fields.address,
+      city: event.fields.city,
+      dateEnd: event.fields.date_end,
+      dateStart: event.fields.date_start,
+      description: event.fields.description,
+      image: event.fields.image,
+      title: event.fields.title
+    }))
+  }
+
+  render() {
+    const { data } = this.state
+
+    return (
+      <div>
+        {this.getData()}
+        <Article data={data} />
+      </div>
+    )
+  }
+}
+
+export default ListeCore

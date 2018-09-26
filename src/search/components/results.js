@@ -1,9 +1,16 @@
 import React from 'react'
 
 const Results = ({ data }) => (
-  <ul>
-    {data.map(item => <li key={item.id}>{item.title}</li>)}
-  </ul>
+  <div>
+    {data.map(item => (
+      <div key={item.id}>
+        <div className="title">
+          {`${item.title} :`}
+        </div>
+        <img src={item.image} alt="img-event" className="imgresult" />
+      </div>
+    ))}
+  </div>
 )
 
 export default Results

@@ -1,3 +1,25 @@
 .test {
   border-color: red;
 }
+
+.foot{
+	position: fixed;
+	bottom: 0;
+	background-color: #3c4350;
+	color: white;
+	width: 100%;
+}
+
+.imgresult{
+	margin-left: 10%;
+	margin-rigth: 10%;
+	height: 80%;
+	width: 80%;
+}
+
+.title{
+	font-size: 24px;
+	font-weight: bold;
+	margin-top: 4%;
+	margin-left: 1%
+}

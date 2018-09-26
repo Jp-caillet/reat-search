@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Navbare from './navbare'
 import List from './list/list.js'
 import Search from './search'
+import Footer from './footer'
+import './index.scss'
 
 const App = () => (
   <div>
@@ -11,9 +13,10 @@ const App = () => (
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={List} />
-        <Route path="/home" component={Search} />
+        <Route path="/search" component={Search} />
       </Switch>
     </BrowserRouter>
+    <Footer className="foot" />
   </div>
 )
 
